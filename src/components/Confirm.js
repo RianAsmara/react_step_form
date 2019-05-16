@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
+import PropTypes from "prop-types";
+import { withStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
@@ -7,6 +9,9 @@ import Button from "@material-ui/core/Button";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
+import Grid from "@material-ui/core/Grid";
+import IconButton from "@material-ui/core/IconButton";
+import MenuIcon from "@material-ui/icons/Menu";
 
 const theme = createMuiTheme({
   typography: {
@@ -29,52 +34,75 @@ export class Confirm extends Component {
     const {
       values: { firstName, lastName, email, occupation, city, bio }
     } = this.props;
-    console.log(firstName);
-    console.log(lastName);
-    console.log(email);
-    console.log(occupation);
-    console.log(city);
-    console.log(bio);
+
+    // console.log(firstName);
+    // console.log(lastName);
+    // console.log(email);
+    // console.log(occupation);
+    // console.log(city);
+    // console.log(bio);
 
     const styles = {
-      button: {
-        margin: 15
+      root: {
+        flexGrow: 1
       },
-      listText: {
-        textColor: "black"
+      grow: {
+        flexGrow: 1
+      },
+      menuButton: {
+        marginLeft: -12,
+        marginRight: 20
+      },
+      button: {
+        margin: 15,
+        backgroundColor: "#2196f3"
       }
     };
 
     return (
-      <div>
+      <div style={styles.root}>
         <MuiThemeProvider theme={theme}>
-          <AppBar position="static" color="default">
+          <AppBar position="static" style={{ background: "#2196f3" }}>
             <Toolbar>
-              <Typography variant="h6" color="inherit">
+              <IconButton
+                style={styles.menuButton}
+                color="inherit"
+                aria-label="Menu"
+              >
+                <MenuIcon />
+              </IconButton>
+              <Typography variant="h6" color="inherit" style={styles.grow}>
                 Confirm
               </Typography>
+              <Button color="inherit">Login</Button>
             </Toolbar>
           </AppBar>
-          <List>
-            <ListItem>
-              <ListItemText primary="First Name" secondary={firstName} />
-            </ListItem>
-            <ListItem>
-              <ListItemText primary="Last Name" secondary={lastName} />
-            </ListItem>
-            <ListItem>
-              <ListItemText primary="Email" secondary={email} />
-            </ListItem>
-            <ListItem>
-              <ListItemText primary="Occupation" secondary={occupation} />
-            </ListItem>
-            <ListItem>
-              <ListItemText primary="City" secondary={city} />
-            </ListItem>
-            <ListItem>
-              <ListItemText primary="Bio" secondary={bio} />
-            </ListItem>
-          </List>
+          <Grid container spacing={24}>
+            <Grid item xs />
+            <Grid item xs>
+              <List>
+                <ListItem>
+                  <ListItemText primary="First Name" secondary={firstName} />
+                </ListItem>
+                <ListItem>
+                  <ListItemText primary="Last Name" secondary={lastName} />
+                </ListItem>
+                <ListItem>
+                  <ListItemText primary="Email" secondary={email} />
+                </ListItem>
+                <ListItem>
+                  <ListItemText primary="Occupation" secondary={occupation} />
+                </ListItem>
+                <ListItem>
+                  <ListItemText primary="City" secondary={city} />
+                </ListItem>
+                <ListItem>
+                  <ListItemText primary="Bio" secondary={bio} />
+                </ListItem>
+              </List>
+            </Grid>
+            <Grid item xs />
+          </Grid>
           <Button
             variant="contained"
             color="primary"
@@ -83,12 +111,7 @@ export class Confirm extends Component {
           >
             Confirm & Continue
           </Button>
-          <Button
-            variant="contained"
-            color="default"
-            onClick={this.back}
-            style={styles.button}
-          >
+          <Button variant="contained" color="default" onClick={this.back}>
             Back
           </Button>
         </MuiThemeProvider>

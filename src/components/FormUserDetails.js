@@ -5,6 +5,12 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
+import Grid from "@material-ui/core/Grid";
+import IconButton from "@material-ui/core/IconButton";
+import MenuIcon from "@material-ui/icons/Menu";
+import blue from "@material-ui/core/colors/blue";
+
+const primary = blue[500];
 
 const theme = createMuiTheme({
   typography: {
@@ -22,19 +28,38 @@ export class FormUserDetails extends Component {
     const { values, handleChange } = this.props;
 
     const styles = {
+      root: {
+        flexGrow: 1
+      },
+      grow: {
+        flexGrow: 1
+      },
+      menuButton: {
+        marginLeft: -12,
+        marginRight: 20
+      },
       button: {
-        margin: 15
+        margin: 15,
+        backgroundColor: "#2196f3"
       }
     };
 
     return (
       <div>
         <MuiThemeProvider theme={theme}>
-          <AppBar position="static" color="default">
+          <AppBar position="static" style={{ background: "#2196f3" }}>
             <Toolbar>
-              <Typography variant="h6" color="inherit">
+              <IconButton
+                style={styles.menuButton}
+                color="inherit"
+                aria-label="Menu"
+              >
+                <MenuIcon />
+              </IconButton>
+              <Typography variant="h6" color="inherit" style={styles.grow}>
                 User Details
               </Typography>
+              <Button color="inherit">Login</Button>
             </Toolbar>
           </AppBar>
           <br />
